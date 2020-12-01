@@ -1,6 +1,6 @@
 <?php include('inc/header-account.php') ?>
 <!-- Body Content Wrapper -->
-<div class="ms-content-wrapper ms-auth">
+<div class="ms-content-wrapper ms-auth register">
   <div class="ms-auth-container">
     <div class="ms-auth-col">
       <div class="ms-auth-bg"></div>
@@ -41,9 +41,9 @@
               </div>
             </div>
             <div class="col-md-12 ">
-              <label for="validationCustom04">Upload profile</label>
+              <label for="validationCustom05">Upload profile</label>
               <div class="input-group">
-                <input type="file" class="form-control" id="validationCustom04" name="file" required="">
+                <input type="file" class="form-control" id="validationCustom05" name="file" required="">
                 <div class="invalid-feedback">
                   Please provide a file.
                 </div>
@@ -58,7 +58,6 @@
                   <option value="Admin">Admin</option>
                   <option value="SRS">SRS</option>
                   <option value="CPRI">CPRI</option>
-                  <option value="Employee">Employee</option>
                 </select>
                 <div class="invalid-feedback">
                   Please select a Categories.
@@ -99,40 +98,94 @@ if (isset($_POST["btn"])) {
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $check = getimagesize($_FILES["file"]["tmp_name"]);
     if ($check !== false) {
-      echo "File is an image - " . $check["mime"] . ".";
+      echo '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>File is an image - "'. $check["mime"] . '"."</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
       $uploadOk = 1;
     } else {
-      echo "File is not an image.";
+      echo '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>File is not an image.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
       $uploadOk = 0;
     }
     if (file_exists($target_file)) {
-      echo "Sorry, file already exists.";
+      echo '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Sorry, file already exists.Please change your file name.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
       $uploadOk = 0;
     }
     // Check file size 1mb
     if ($_FILES["file"]["size"] > 1000000) {
-      echo "Sorry, your file is too large.";
+      echo '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Sorry, your file is too large.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
       $uploadOk = 0;
     }
     if (
       $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
       && $imageFileType != "gif"
     ) {
-      echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+      echo '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Sorry, only JPG, JPEG, PNG & GIF files are allowed.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
       $uploadOk = 0;
     }
     if ($uploadOk == 0) {
-      echo "Sorry, your file was not uploaded.";
+      echo '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Sorry, your file was not uploaded.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
     } else {
       if (!move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-        echo "Sorry, there was an error uploading your file.";
+        echo '
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Sorry, there was an error uploading your file.</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
       } else {
         // echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
       }
     }
-    echo "<script>alert('Form Submit')</script>";
+    echo '
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Account has been created</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
   } else {
-    echo "<script>alert('Form not Submit')</script>";
+    echo '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Some thing went wrong</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
   }
 }
 // id	name	email	password	role	status	image

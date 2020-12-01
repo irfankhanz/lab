@@ -404,7 +404,6 @@
 
 <?php
 if (isset($_POST['forget_pass'])) {
-  echo "workig ";
   $to = $_POST['reset_email'];
   $query = "select * From register where email='" . $to . "'";
   $result = mysqli_query($con, $query) or die("Query Failed");
