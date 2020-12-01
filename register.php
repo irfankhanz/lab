@@ -92,7 +92,7 @@ if (isset($_POST["btn"])) {
   $a = mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file')");
 
   if ($a) {
-    $target_dir = "C:/laragon/www/aptechProject/lab/assets/website/user/";
+    $target_dir = "C:/xampp/htdocs/aptechProject/lab/assets/website/user";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
