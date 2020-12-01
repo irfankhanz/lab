@@ -84,7 +84,6 @@ if (isset($_POST["btn"])) {
   $pass = $_POST["pass"];
   $role = $_POST["role"];
   $status = "Pending";
-  $default = "later";
   $file = $_FILES["file"]["name"];
 
   // echo  $name.' '. $email.' '. $pass.' '. $role.' '. $status.' '. $file.' ';
