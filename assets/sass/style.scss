@@ -1,0 +1,41 @@
+@import './partials/variables';
+@import './partials/mixin';
+@import './partials/extensions';
+@import 'layout';
+
+// table Allow User
+#allow-user {
+  input:checked + .ms-switch-slider.ms-switch-warning {
+    background: #ff4c01;
+    border-color: #ff4c01;
+  }
+}
+
+// lock screen
+.ms-lock-screen {
+  .has-icon {
+    @extend %posRelative;
+    .screen-logout-icon {
+      @extend %posAbsolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+}
+
+// login
+.login {
+  .mb-2 {
+    @extend %posRelative;
+    input {
+      padding-right: 33px;
+    }
+    #password-icon-btn {
+      cursor: pointer;
+      @extend %posAbsolute;
+      top: 10px;
+      right: 10px;
+      z-index: 3;
+    }
+  }
+}
